@@ -1,0 +1,10 @@
+This is a fork of opticon project : 
+http://code.google.com/p/opticon/
+
+Added function : 
+	:response_body_NOT_contains, wich send error if page content include unexpected string or regexp
+
+
+
+
+

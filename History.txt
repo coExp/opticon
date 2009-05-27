@@ -1,0 +1,30 @@
+=== 0.0.4 :: 2008-10-09
+
+* Added the SNMPTrap notifier to make it possible to send failure notifications 
+  as SNMP traps.
+* Added the IOStream notifier to print failures to an output stream. By default
+  the $stderr stream is used, but this can be configured to point to a file
+  or any other output stream.
+
+=== 0.0.3 :: 2008-04-02
+
+* When a service doesn't respond, a ConnectionFailure is now correctly
+  recorded. You can change how long Opticon will wait for a connection by
+  setting the Opticon.default_timeout value. The timeout is 3 seconds by
+  default.
+* Changed require paths to fix strange loading problems experienced
+  by some people.
+
+=== 0.0.2 :: 2007-11-15
+
+* A series of tests on a service can now be specified as a block to the 
+  Service#test method.
+* All failures generated inside a test block are all batched together
+  into one notification.  
+* Opticon test scripts can now be run with the "-v" switch to verbosely
+  display what the script is doing.  
+* Failure messages are now a bit more readable for non-techies.
+
+=== 0.0.1 :: 2007-02-21
+
+* First public release.
