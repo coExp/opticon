@@ -2,9 +2,28 @@ This is a fork of opticon project :
 http://code.google.com/p/opticon/
 
 Added function : 
-	:response_body_NOT_contains, wich send error if page content include unexpected string or regexp
+	- :response_body_not_contains, wich send error if page content include unexpected string or regexp
+	- 3th options modify the timeout only for the test, swith to default timeout after
 
+To add functions in opticon :
+	- modify /lib/opticon/service.rb : 
+		In the class Opticon::Service::test in case loop, add the call of your test
+					when :response_my_test, 'response_my_test'
+						tester = Opticon::Tester::MyTester.new         
 
+	- modify /lib/opticon/tester.rb :
+		In the module Opticon::Tester, add your class MyTester
+					class MyTester < Base
+						@failure = Opticon::Failure::MyTestFailure.new(uri, condition, r)
+					end
+
+	- modify /lib/opticon/failure.rb :
+		In the module Opticon::Failure, add your class MyTestFailure
+					class MyTestFailure < Base
+						def failure_message
+							"My failure message for my test"
+						end
+					end
 
 
 

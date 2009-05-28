@@ -32,7 +32,13 @@ module Opticon
         tester_type = args[0]
         condition = args[1]
         options = args[2]
-      
+   
+        # If asked, modify timeout for this test
+        if args.size == 3 and args[2].class == Fixnum then 
+          tmp_timeout = Opticon::default_timeout           
+          Opticon::default_timeout= args[2]                
+        end  
+ 
         case tester_type
         when :responds_with_code, 'responds_with_code'
           tester = Opticon::Tester::ResponseCodeTester.new
@@ -71,7 +77,10 @@ module Opticon
           notifiers.each {|n| n.notify(tester.failure)} unless @batch_notify
           @failures << tester.failure
         end
-        
+
+        # Put the timeout to default value
+        if tmp_timeout != nil then Opticon::default_timeout= tmp_timeout end
+ 
         # return self to allow for chaining test calls
         return self
       end
