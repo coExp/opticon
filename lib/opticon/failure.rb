@@ -17,7 +17,11 @@ module Opticon
     
     class ConnectionFailure < Base
       def failure_message
-        "#{exception.message} (#{exception.class})"
+        if exception.class == Timeout::Error then
+          "#{exception.message} (#{exception.class} timeout=#{Opticon::default_timeout}s) "
+        else
+          "#{exception.message} (#{exception.class})"
+        end
       end
     end
     
